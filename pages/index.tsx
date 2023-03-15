@@ -2,10 +2,33 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.css";
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+  const dummyData = [
+    { ctgry_name: "bar", ctgry_disc: "바 유형의 차트입니다.", ctgry_charts: [
+        {chart_name: "BarA", chart_sub: "Bar A Type chart", chart_disc: "BarA 차트입니다.", chart_img: "이미지" },
+        {chart_name: "BarB", chart_sub: "Bar B Type chart", chart_disc: "BarB 차트입니다.", chart_img: "이미지" },
+        {chart_name: "BarC", chart_sub: "Bar C Type chart", chart_disc: "BarC 차트입니다.", chart_img: "이미지" },
+        {chart_name: "BarD", chart_sub: "Bar D Type chart", chart_disc: "BarD 차트입니다.", chart_img: "이미지" },
+      ] 
+    },
+    { ctgry_name: "dot", ctgry_disc: "점 유형의 차트입니다.", ctgry_charts: [
+        {chart_name: "DotA", chart_sub: "DotA Type chart", chart_disc: "DotA 차트입니다.", chart_img: "이미지" },
+        {chart_name: "DotB", chart_sub: "DotB Type chart", chart_disc: "DotB 차트입니다.", chart_img: "이미지" },
+        {chart_name: "DotC", chart_sub: "DotC Type chart", chart_disc: "DotC 차트입니다.", chart_img: "이미지" },
+        {chart_name: "DotD", chart_sub: "DotD Type chart", chart_disc: "DotD 차트입니다.", chart_img: "이미지" },
+        {chart_name: "DotE", chart_sub: "DotE Type chart", chart_disc: "DotE 차트입니다.", chart_img: "이미지" },
+        {chart_name: "DotF", chart_sub: "DotF Type chart", chart_disc: "DotF 차트입니다.", chart_img: "이미지" },
+      ] 
+    },
+    { ctgry_name: "line", ctgry_disc: "선 유형의 차트입니다.", ctgry_charts: [{chart_name: "LineA", chart_sub: "LineA Type chart", chart_disc: "LineA 차트입니다.", chart_img: "이미지" }] },
+    { ctgry_name: "pie", ctgry_disc: "파이 유형의 차트입니다.", ctgry_charts: [{chart_name: "PieA", chart_sub: "PieA Type chart", chart_disc: "PieA 차트입니다.", chart_img: "이미지" }] },
+    { ctgry_name: "mix", ctgry_disc: "믹스 유형의 차트입니다.", ctgry_charts: [{chart_name: "MixA", chart_sub: "MixA Type chart", chart_disc: "MixA 차트입니다.", chart_img: "이미지" }] },
+  ]
   return (
     <>
       <Head>
@@ -15,104 +38,33 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={styles.main}>
-        <h1>Hello Charts!</h1>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-              target='_blank'
-              rel='noopener noreferrer'>
-              By{" "}
-              <Image
-                src='/vercel.svg'
-                alt='Vercel Logo'
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+        <header>
+          header
+        </header>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src='/next.svg'
-            alt='Next.js Logo'
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src='/thirteen.svg'
-              alt='13'
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
+        {dummyData.map(ctgry => {
+          return (
+            <ul>
+              <h3>{ctgry.ctgry_name}</h3>
+              <span>{ctgry.ctgry_disc}</span>
+              {ctgry.ctgry_charts.map(chart => {
+                return (
+                  <li>
+                    <Link href={`/chart/${chart.chart_name}`}>
+                      <h4>{chart.chart_name}</h4>
+                      <div>{chart.chart_img}</div>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          )
+        })}        
 
-        <div className={styles.grid}>
-          <a
-            href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'>
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+        <footer>
+          footer
+        </footer>
 
-          <a
-            href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'>
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'>
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'>
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
       </main>
     </>
   );
