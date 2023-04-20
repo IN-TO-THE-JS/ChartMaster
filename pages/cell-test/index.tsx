@@ -95,22 +95,19 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
         previousPage,
         setPageSize,
         state: { pageIndex, pageSize },
-    } = useTable(
-        {
-            columns,
-            data,
-            defaultColumn,
-            // use the skipPageReset option to disable page resetting temporarily
-            autoResetPage: !skipPageReset,
-            // updateMyData isn't part of the API, but
-            // anything we put into these options will
-            // automatically be available on the instance.
-            // That way we can call this function from our
-            // cell renderer!
-            updateMyData,
-        },
-        usePagination
-    );
+    } = useTable({
+        columns,
+        data,
+        defaultColumn,
+        // use the skipPageReset option to disable page resetting temporarily
+        autoResetPage: !skipPageReset,
+        // updateMyData isn't part of the API, but
+        // anything we put into these options will
+        // automatically be available on the instance.
+        // That way we can call this function from our
+        // cell renderer!
+        updateMyData,
+    });
 
     // Render the UI for your table
     return (
