@@ -1,25 +1,91 @@
 .main * {
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main h1, .main h2, .main h3, .main h4 {
+  font-weight: 400;
+}
+
+.main a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.main header {
+  height: 60px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.main header > a > img {
+  height: 70%;
+}
+
+.main > div {
+  font-size: 24px;
+  color: #7F7B75;
+  font-weight: 300;
+  margin: 30px 0;
 }
 
 .main ul {
   display: flex;
-  border: 1px solid black;
+  flex-wrap: wrap;
+  border-top: 1px solid #CCCCCC;
   width: 100vw;
+  gap: 1%;
+  padding: 0.5vw;
+  background-color: #FBFBFB;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.main ul > h3 {
+  font-weight: 600;
+}
+
+.main ul > span {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #7F7B75;
 }
 
 .main ul > li {
-  width: 10vw;
-  border: 1px solid black;
+  width: 10%;
+  height: 7.7vw;
+  border: 1px solid #DDDDDD;
+  margin-top: 1%;
 }
 
-.main {
+.main ul > li div {
+  height: 72%;
+  overflow: hidden;
+}
+
+.main ul > li img {
+  width: 100%;
+  position: relative;
+  top: 50%;left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main ul > li h4 {
+  height: 28%;
+  border-top: 1px solid #DDDDDD;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  color: #333359;
+  font-weight: 500;
+}
+.main {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding: 6rem; */
+  /* min-height: 100vh; */
 }
 
 .description {
@@ -76,7 +142,7 @@
 
 .card h2 {
   font-weight: 600;
-  margin-bottom: 0.7rem;
+  /* margin-bottom: 0.7rem; */
 }
 
 .card p {
@@ -100,7 +166,7 @@
   border-radius: 50%;
   width: 480px;
   height: 360px;
-  margin-left: -400px;
+  /* margin-left: -400px; */
 }
 
 .center::after {
@@ -149,7 +215,7 @@
 
   .grid {
     grid-template-columns: 1fr;
-    margin-bottom: 120px;
+    /* margin-bottom: 120px; */
     max-width: 320px;
     text-align: center;
   }
@@ -159,7 +225,7 @@
   }
 
   .card h2 {
-    margin-bottom: 0.5rem;
+    /* margin-bottom: 0.5rem; */
   }
 
   .center {
