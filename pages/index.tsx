@@ -58,6 +58,7 @@ export default function Home() {
                 <div>Choose a template</div>
 
                 {myChart.map((ctgry, i) => {
+                {charts.map((ctgry) => {
                     return (
                         <ul>
                             <h3>{ctgry.ctgry_name}</h3>
