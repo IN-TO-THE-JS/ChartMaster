@@ -5,10 +5,10 @@ import styles from "../styles/Home.module.css";
 import Link from 'next/link';
 import {charts} from '../data/charts'
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
   return (
     <>
       <Head>
@@ -38,18 +38,37 @@ export default function Home() {
                       <div><img src={`/img/${ctgry.ctgry_imgtag}_${idx}.png`} /></div>
                       <h4>{chart.chart_name}</h4>
                     </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )
-        })}        
+                </header>
 
-        <footer>
-          footer
-        </footer>
+                <div>Choose a template</div>
 
-      </main>
-    </>
-  );
+                {dummyData.map((ctgry) => {
+                    return (
+                        <ul>
+                            <h3>{ctgry.ctgry_name}</h3>
+                            <span>{ctgry.ctgry_disc}</span>
+                            {ctgry.ctgry_charts.map((chart, idx) => {
+                                return (
+                                    <li>
+                                        <Link
+                                            href={`/chart/${chart.chart_name}`}
+                                        >
+                                            <div>
+                                                <img
+                                                    src={`/img/${ctgry.ctgry_imgtag}_${idx}.png`}
+                                                />
+                                            </div>
+                                            <h4>{chart.chart_name}</h4>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    );
+                })}
+
+                <footer>footer</footer>
+            </main>
+        </>
+    );
 }
