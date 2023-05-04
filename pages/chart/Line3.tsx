@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
-import ds from "../../data/data"
+import { ds_line3 as ds } from "../../data/data"
 
 export default function Line3() {
 

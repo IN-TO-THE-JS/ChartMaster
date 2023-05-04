@@ -37,14 +37,24 @@ export default function Home() {
                             <h3>{ctgry.ctgry_name}</h3>
                             <span>{ctgry.ctgry_disc}</span>
                             {ctgry.ctgry_charts.map((chart, idx) => {
+                                let isDone = 0.2;
+                                fetch(`/chart/${chart.chart_code}`).then(
+                                    (res) => {
+                                        console.log(res.status);
+                                        if (res.status === 200) {
+                                            isDone = 1;
+                                        }
+                                    }
+                                );
                                 return (
-                                    <li>
+                                    <li key={chart.chart_code}>
                                         <Link
                                             href={`/chart/${chart.chart_code}`}
                                         >
                                             <div>
                                                 <img
                                                     src={`/img/${ctgry.ctgry_imgtag}_${idx}.png`}
+                                                    style={{ opacity: isDone }}
                                                 />
                                             </div>
                                             <h4>{chart.chart_name}</h4>
