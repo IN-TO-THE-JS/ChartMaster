@@ -4,10 +4,34 @@ import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { charts } from "../data/charts";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+    const [myChart, setMyChart] = useState(charts)
+
+    const fetchData = async () => {
+        for(let ctgry of myChart) {
+            for(let chart of ctgry.ctgry_charts) {
+                try {
+                    const result = await axios.get(`/chart/${chart.chart_code}`)
+                    if(result.status === 200) {
+                        chart.isDone = 1
+                    } 
+                } catch (err) {
+                    // console.log(err)
+                }
+            }
+        }
+        setMyChart([...myChart])
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
         <>
             <Head>
@@ -31,21 +55,12 @@ export default function Home() {
 
                 <div>Choose a template</div>
 
-                {charts.map((ctgry) => {
+                {myChart.map((ctgry, i) => {
                     return (
                         <ul>
                             <h3>{ctgry.ctgry_name}</h3>
                             <span>{ctgry.ctgry_disc}</span>
-                            {ctgry.ctgry_charts.map((chart, idx) => {
-                                let isDone = 0.2;
-                                fetch(`/chart/${chart.chart_code}`).then(
-                                    (res) => {
-                                        console.log(res.status);
-                                        if (res.status === 200) {
-                                            isDone = 1;
-                                        }
-                                    }
-                                );
+                            {ctgry.ctgry_charts.map((chart, j) => {
                                 return (
                                     <li key={chart.chart_code}>
                                         <Link
@@ -53,8 +68,8 @@ export default function Home() {
                                         >
                                             <div>
                                                 <img
-                                                    src={`/img/${ctgry.ctgry_imgtag}_${idx}.png`}
-                                                    style={{ opacity: isDone }}
+                                                    src={`/img/${ctgry.ctgry_imgtag}_${j}.png`}
+                                                    style={{ opacity: chart.isDone ? chart.isDone : 0.05 }}
                                                 />
                                             </div>
                                             <h4>{chart.chart_name}</h4>
