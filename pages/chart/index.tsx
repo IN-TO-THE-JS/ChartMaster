@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import BarChart from "./Bar1";
-import DonutChart from "./Donut1";
+import BarChart from "./BarChart";
+import DonutChart from "./DonutChart";
 // import { BarChart1, BarChart2, BarChart3 } from "./TestBarChart";
 
 const datas = [
@@ -34,11 +34,11 @@ const Chart = () => {
             <button onClick={changeData}>Change Data</button>
             {/* <BarChart1 />
       <BarChart3 data={barData} /> */}
-            {/* <BarChart2 width={600} height={400} data={data} /> */}
-            <BarChart width={600} height={400} data={data} />
-            <DonutChart width={600} height={400} data={data} />
-        </div>
-    );
+      {/* <BarChart2 width={600} height={400} data={data} /> */}
+      <BarChart width={600} height={400} data={data} />
+      <DonutChart width={600} height={400} data={data} />
+    </div>
+  );
 };
 
 export default Chart;

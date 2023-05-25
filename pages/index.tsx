@@ -10,27 +10,31 @@ import axios from 'axios'
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-    const [myChart, setMyChart] = useState(charts)
+    const [myChart, setMyChart] = useState(charts);
 
     const fetchData = async () => {
-        for(let ctgry of myChart) {
-            for(let chart of ctgry.ctgry_charts) {
+        for (let ctgry of myChart) {
+            for (let chart of ctgry.ctgry_charts) {
                 try {
-                    const result = await axios.get(`/chart/${chart.chart_code}`)
-                    if(result.status === 200) {
-                        chart.isDone = 1
-                    } 
+                    const result = await axios.get(
+                        `/chart/${chart.chart_code}`
+                    );
+                    if (result.status === 200) {
+                        chart.isDone = 1;
+                    }
+
                 } catch (err) {
                     // console.log(err)
                 }
             }
         }
-        setMyChart([...myChart])
-    }
+        setMyChart([...myChart]);
+    };
 
     useEffect(() => {
-        fetchData()
-    }, [])
+        fetchData();
+    }, []);
+
 
     return (
         <>
@@ -69,7 +73,11 @@ export default function Home() {
                                             <div>
                                                 <img
                                                     src={`/img/${ctgry.ctgry_imgtag}_${j}.png`}
-                                                    style={{ opacity: chart.isDone ? chart.isDone : 0.05 }}
+                                                    style={{
+                                                        opacity: chart.isDone
+                                                            ? chart.isDone
+                                                            : 0.05,
+                                                    }}
                                                 />
                                             </div>
                                             <h4>{chart.chart_name}</h4>
