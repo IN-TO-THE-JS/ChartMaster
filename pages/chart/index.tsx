@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 // import { BarChart1, BarChart2, BarChart3 } from "./TestBarChart";
 import styled from "styled-components";
 import Link from "next/link";
+import ExportModal from "../export/ExportModal";
 
 const Styles = styled.div`
     .chartPage {
@@ -54,36 +55,22 @@ const Styles = styled.div`
     }
 `;
 
-const datas = [
-    [10, 30, 40, 20],
-    [10, 40, 30, 20, 50, 10],
-    [60, 30, 40, 20, 30],
-];
-var i = 0;
-
 const Chart = () => {
-    const [data, setData] = useState([]);
+    const [isExportModalOn, setIsExportModalOn] = useState(false);
     const router = useRouter();
     const { component } = router.query;
 
     const Chart = dynamic(import(`../chart/${component}`));
 
-    const ActiveComponent = useEffect(() => {
-        changeData();
-    }, []);
-
     const changeData = () => {
-        setData(datas[i++]);
-        if (i === datas.length) i = 0;
+        console.log("Change data.");
     };
 
-    // const barData = [
-    //   { name: "A", value: 10 },
-    //   { name: "B", value: 20 },
-    //   { name: "C", value: 15 },
-    //   { name: "D", value: 30 },
-    //   { name: "E", value: 25 },
-    // ];
+    const handleClickExport = () => {
+        setIsExportModalOn(!isExportModalOn);
+        console.log(isExportModalOn);
+    };
+
     return (
         <Styles>
             <div className="chartPage">
@@ -91,8 +78,15 @@ const Chart = () => {
                     <Link href={"/"} className="home">
                         홈
                     </Link>
-                    <div className="export">Export & Publish</div>
+
                     <div className="profile">Profile</div>
+                    {isExportModalOn ? (
+                        <ExportModal />
+                    ) : (
+                        <button className="export" onClick={handleClickExport}>
+                            Export & Publish
+                        </button>
+                    )}
                 </header>
                 <div className="ctrlA">
                     <button onClick={changeData}>Change Data</button>
@@ -101,11 +95,6 @@ const Chart = () => {
                     <Chart />
                 </div>
                 <div className="ctrlB">controller B</div>
-                {/* <BarChart1 />
-      <BarChart3 data={barData} /> */}
-                {/* <BarChart2 width={600} height={400} data={data} /> */}
-                {/* <BarChart width={600} height={400} data={data} />
-            <DonutChart width={600} height={400} data={data} /> */}
             </div>
         </Styles>
     );
