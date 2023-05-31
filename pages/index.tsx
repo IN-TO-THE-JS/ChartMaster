@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { charts } from "../data/charts";
 import { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,6 @@ export default function Home() {
                     if (result.status === 200) {
                         chart.isDone = 1;
                     }
-
                 } catch (err) {
                     // console.log(err)
                 }
@@ -34,7 +33,6 @@ export default function Home() {
     useEffect(() => {
         fetchData();
     }, []);
-
 
     return (
         <>
@@ -68,7 +66,12 @@ export default function Home() {
                                 return (
                                     <li key={chart.chart_code}>
                                         <Link
-                                            href={`/chart/${chart.chart_code}`}
+                                            href={{
+                                                pathname: `/chart`,
+                                                query: {
+                                                    component: chart.chart_code,
+                                                },
+                                            }}
                                         >
                                             <div>
                                                 <img
